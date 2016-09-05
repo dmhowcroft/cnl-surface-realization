@@ -121,10 +121,39 @@ class DependencyTree(Tree):
         else:
             root = spacy_doc
         self.set_label(str(root))
+        self.features['dependency_label'] = en_nlp.vocab[root.dep].orth_
         for child in root.children:
             child_tree = DependencyTree("")
             child_tree.from_spacy_sentence(child, find_root=False)
             self.append(child_tree)
+
+
+def realize(deptree):
+    dep = deptree.features.get("dependency_label", False)
+    out_string = deptree.label()
+    left_buffer = []
+    for child in deptree:
+        attachment_decision = where_to_attach(child)
+        if attachment_decision == -2:
+            left_buffer.append(realize(child))
+        elif attachment_decision == -1:
+            out_string = realize(child) + " " + out_string
+        elif attachment_decision == 1:
+            out_string = out_string + " " + realize(child)
+    if left_buffer:
+        out_string = " ".join(left_buffer) + " " + out_string
+    return out_string
+
+
+def where_to_attach(deptree):
+    dep = deptree.features.get("dependency_label")
+    if dep in ("det") or deptree.label() in ("when"):
+        return -2
+    elif dep in ("nsubj", "compound", "amod"):
+        return -1
+    else:
+        return 1
+
 
 
 def get_root(spacy_doc):
@@ -159,10 +188,14 @@ if __name__ == "__main__":
     sent_one = en_nlp(side_stay_gear_leg)
     sent_two = en_nlp(obey_safety_instructions)
 
-    print(type(sent_one))
     print(sent_one)
-    print(sent_two)
-
     dt = DependencyTree("")
     dt.from_spacy_sentence(sent_one)
     print(dt)
+    print(realize(dt))
+
+    print(sent_two)
+    d2 = DependencyTree("")
+    d2.from_spacy_sentence(sent_two)
+    print(d2)
+    print(realize(d2))
