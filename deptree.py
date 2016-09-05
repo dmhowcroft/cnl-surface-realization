@@ -131,29 +131,35 @@ class DependencyTree(Tree):
 def realize(deptree):
     dep = deptree.features.get("dependency_label", False)
     out_string = deptree.label()
+    left_edge_buffer = []
+    left_mid_buffer = []
     left_buffer = []
     for child in deptree:
         attachment_decision = where_to_attach(child)
-        if attachment_decision == -2:
-            left_buffer.append(realize(child))
+        if attachment_decision == -3:
+            left_edge_buffer.append(realize(child))
+        elif attachment_decision == -2:
+            left_mid_buffer.append(realize(child))
         elif attachment_decision == -1:
-            out_string = realize(child) + " " + out_string
+            left_buffer.append(realize(child))
         elif attachment_decision == 1:
             out_string = out_string + " " + realize(child)
-    if left_buffer:
-        out_string = " ".join(left_buffer) + " " + out_string
+    for buffer in left_buffer, left_mid_buffer, left_edge_buffer:
+        if buffer:
+            out_string = " ".join(buffer) + " " + out_string
     return out_string
 
 
 def where_to_attach(deptree):
     dep = deptree.features.get("dependency_label")
-    if dep in ("det") or deptree.label() in ("when"):
+    if dep in ("det", "mark") or deptree.label() in ("when"):
+        return -3
+    elif dep in ("nsubj", "nsubjpass", "amod", "nummod"):
         return -2
-    elif dep in ("nsubj", "compound", "amod"):
+    elif dep in ("aux", "auxpass", "neg", "compound"):
         return -1
     else:
         return 1
-
 
 
 def get_root(spacy_doc):
@@ -180,22 +186,15 @@ def print_dependencies(spacy_doc, from_root=True):
 
 
 if __name__ == "__main__":
-    # Define test inputs
-    side_stay_gear_leg = "The side stay holds the main gear leg."
-    obey_safety_instructions = "Obey the safety instructions when you turn the valves."
-
-    # Parse with spacy
-    sent_one = en_nlp(side_stay_gear_leg)
-    sent_two = en_nlp(obey_safety_instructions)
-
-    print(sent_one)
-    dt = DependencyTree("")
-    dt.from_spacy_sentence(sent_one)
-    print(dt)
-    print(realize(dt))
-
-    print(sent_two)
-    d2 = DependencyTree("")
-    d2.from_spacy_sentence(sent_two)
-    print(d2)
-    print(realize(d2))
+    with open("ste100.sents", 'r') as example_file:
+        line_count = 0
+        for line in example_file:
+            line_count += 1
+            print("Processing example {}".format(line_count))
+            print(line)
+            dt = DependencyTree("")
+            dt.from_spacy_sentence(en_nlp(line))
+            print(dt)
+            print(realize(dt))
+            print("----------------")
+            print()
