@@ -46,5 +46,5 @@ lexicon_p = [('pack', 'v'),
              ('pull', 'v'), # pulls, pulled, pulled
              ('push', 'v'), # pushes, pushed, pushed
              ('put', 'v'), # puts, put, put
-             ('put on', 'v') # puts on, put on, put on
-]
+             ('put on', 'v')] # puts on, put on, put on
+
