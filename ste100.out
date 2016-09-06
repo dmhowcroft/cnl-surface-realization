@@ -1,0 +1,244 @@
+/home/howcroft/Documents/playground/cnl-surface-rlzn/py3venv/bin/python /home/howcroft/Documents/playground/cnl-surface-rlzn/deptree.py
+Loading spaCy for English...
+Loaded in 150.97170519828796 seconds.
+Processing example 1
+Obey the safety instructions when you turn the valves.
+
+(Obey:dependency_label=ROOT
+  (instructions:dependency_label=dobj
+    (the:dependency_label=det )
+    (safety:dependency_label=compound ))
+  (turn:dependency_label=advcl
+    (when:dependency_label=advmod )
+    (you:dependency_label=nsubj )
+    (valves:dependency_label=dobj (the:dependency_label=det )))
+  (.:dependency_label=punct (
+:dependency_label= )))
+Obey the safety instructions when you turn the valves . 
+
+----------------
+
+Processing example 2
+Turn all valves slowly to prevent strong jets of steam.
+
+(Turn:dependency_label=ROOT
+  (valves:dependency_label=dobj (all:dependency_label=det ))
+  (slowly:dependency_label=advmod )
+  (prevent:dependency_label=advcl
+    (to:dependency_label=aux )
+    (jets:dependency_label=dobj
+      (strong:dependency_label=amod )
+      (of:dependency_label=prep (steam:dependency_label=pobj ))))
+  (.:dependency_label=punct (
+:dependency_label= )))
+Turn all valves slowly to prevent strong jets of steam . 
+
+----------------
+
+Processing example 3
+Steam can damage hose lines and components.
+
+(damage:dependency_label=ROOT
+  (Steam:dependency_label=nsubj )
+  (can:dependency_label=aux )
+  (lines:dependency_label=dobj
+    (hose:dependency_label=compound )
+    (and:dependency_label=cc )
+    (components:dependency_label=conj ))
+  (.:dependency_label=punct (
+:dependency_label= )))
+Steam can damage hose lines and components . 
+
+----------------
+
+Processing example 4
+Close all valves by hand.
+
+(Close:dependency_label=ROOT
+  (valves:dependency_label=dobj (all:dependency_label=det ))
+  (by:dependency_label=prep (hand:dependency_label=pobj ))
+  (.:dependency_label=punct (
+:dependency_label= )))
+Close all valves by hand . 
+
+----------------
+
+Processing example 5
+Do not stay near the valves, if the system is pressurized.
+
+(stay:dependency_label=ROOT
+  (Do:dependency_label=aux )
+  (not:dependency_label=neg )
+  (near:dependency_label=prep
+    (valves:dependency_label=pobj (the:dependency_label=det )))
+  (,:dependency_label=punct )
+  (pressurized:dependency_label=advcl
+    (if:dependency_label=mark )
+    (system:dependency_label=nsubjpass (the:dependency_label=det ))
+    (is:dependency_label=auxpass ))
+  (.:dependency_label=punct (
+:dependency_label= )))
+Do not stay near the valves , if the system is pressurized . 
+
+----------------
+
+Processing example 6
+Measure the time necessary for the silica gel to absorb the moisture.
+
+(Measure:dependency_label=ROOT
+  (time:dependency_label=dobj
+    (the:dependency_label=det )
+    (necessary:dependency_label=amod ))
+  (absorb:dependency_label=advcl
+    (for:dependency_label=mark )
+    (gel:dependency_label=nsubj
+      (the:dependency_label=det )
+      (silica:dependency_label=compound ))
+    (to:dependency_label=aux )
+    (moisture:dependency_label=dobj (the:dependency_label=det )))
+  (.:dependency_label=punct (
+:dependency_label= )))
+Measure the necessary time for the silica gel to absorb the moisture . 
+
+----------------
+
+Processing example 7
+Clean your skin with a large quantity of clean water.
+
+(Clean:dependency_label=ROOT
+  (skin:dependency_label=dobj (your:dependency_label=poss ))
+  (with:dependency_label=prep
+    (quantity:dependency_label=pobj
+      (a:dependency_label=det )
+      (large:dependency_label=amod )
+      (of:dependency_label=prep
+        (water:dependency_label=pobj (clean:dependency_label=amod )))))
+  (.:dependency_label=punct (
+:dependency_label= )))
+Clean skin your with a large quantity of clean water . 
+
+----------------
+
+Processing example 8
+The shock mount absorbs the vibration.
+
+(absorbs:dependency_label=ROOT
+  (mount:dependency_label=nsubj
+    (shock:dependency_label=compound (The:dependency_label=det )))
+  (vibration:dependency_label=dobj (the:dependency_label=det ))
+  (.:dependency_label=punct (
+:dependency_label= )))
+The shock mount absorbs the vibration . 
+
+----------------
+
+Processing example 9
+Obey the safety instructions.
+
+(Obey:dependency_label=ROOT
+  (instructions:dependency_label=dobj
+    (the:dependency_label=det )
+    (safety:dependency_label=compound ))
+  (.:dependency_label=punct (
+:dependency_label= )))
+Obey the safety instructions . 
+
+----------------
+
+Processing example 10
+Put oil on the machined surface.
+
+(Put:dependency_label=ROOT
+  (oil:dependency_label=dobj )
+  (on:dependency_label=prep
+    (surface:dependency_label=pobj
+      (the:dependency_label=det )
+      (machined:dependency_label=amod )))
+  (.:dependency_label=punct (
+:dependency_label= )))
+Put oil on the machined surface . 
+
+----------------
+
+Processing example 11
+Keep the primary part of the assembly.
+
+(Keep:dependency_label=ROOT
+  (part:dependency_label=dobj
+    (the:dependency_label=det )
+    (primary:dependency_label=amod )
+    (of:dependency_label=prep
+      (assembly:dependency_label=pobj (the:dependency_label=det ))))
+  (.:dependency_label=punct (
+:dependency_label= )))
+Keep the primary part of the assembly . 
+
+----------------
+
+Processing example 12
+Install the spacer between the two washers.
+
+(Install:dependency_label=ROOT
+  (spacer:dependency_label=dobj
+    (the:dependency_label=det )
+    (between:dependency_label=prep
+      (washers:dependency_label=pobj
+        (the:dependency_label=det )
+        (two:dependency_label=nummod ))))
+  (.:dependency_label=punct (
+:dependency_label= )))
+Install the spacer between the two washers . 
+
+----------------
+
+Processing example 13
+The fumes from this material are dangerous to the skin.
+
+(are:dependency_label=ROOT
+  (fumes:dependency_label=nsubj
+    (The:dependency_label=det )
+    (from:dependency_label=prep
+      (material:dependency_label=pobj (this:dependency_label=det ))))
+  (dangerous:dependency_label=acomp
+    (to:dependency_label=prep
+      (skin:dependency_label=pobj (the:dependency_label=det ))))
+  (.:dependency_label=punct (
+:dependency_label= )))
+The fumes from this material are dangerous to the skin . 
+
+----------------
+
+Processing example 14
+Increase the temperature to decrease the cure time.
+
+(Increase:dependency_label=ROOT
+  (temperature:dependency_label=dobj (the:dependency_label=det ))
+  (decrease:dependency_label=advcl
+    (to:dependency_label=aux )
+    (time:dependency_label=dobj
+      (the:dependency_label=det )
+      (cure:dependency_label=compound )))
+  (.:dependency_label=punct (
+:dependency_label= )))
+Increase the temperature to decrease the cure time . 
+
+----------------
+
+Processing example 15
+The side stay holds the main gear leg.
+
+(holds:dependency_label=ROOT
+  (stay:dependency_label=nsubj
+    (side:dependency_label=compound (The:dependency_label=det )))
+  (leg:dependency_label=dobj
+    (the:dependency_label=det )
+    (main:dependency_label=amod )
+    (gear:dependency_label=compound ))
+  (.:dependency_label=punct (
+:dependency_label= )))
+The side stay holds the main gear leg . 
+
+----------------
+
+
+Process finished with exit code 0
