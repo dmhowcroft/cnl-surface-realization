@@ -35,39 +35,6 @@ def from_spacy_sentence(spacy_doc, find_root=True):
     return dt
 
 
-def realize(deptree):
-    out_string = deptree.label()
-    left_edge_buffer = []
-    left_mid_buffer = []
-    left_buffer = []
-    for child in deptree:
-        attachment_decision = where_to_attach(child)
-        if attachment_decision == -3:
-            left_edge_buffer.append(realize(child))
-        elif attachment_decision == -2:
-            left_mid_buffer.append(realize(child))
-        elif attachment_decision == -1:
-            left_buffer.append(realize(child))
-        elif attachment_decision == 1:
-            out_string = out_string + " " + realize(child)
-    for buffer in left_buffer, left_mid_buffer, left_edge_buffer:
-        if buffer:
-            out_string = " ".join(buffer) + " " + out_string
-    return out_string
-
-
-def where_to_attach(deptree):
-    dep = deptree.features.get("dependency_label")
-    if dep in ("det", "mark") or deptree.label() in ("when", ):
-        return -3
-    elif dep in ("nsubj", "nsubjpass", "amod", "nummod"):
-        return -2
-    elif dep in ("aux", "auxpass", "neg", "compound"):
-        return -1
-    else:
-        return 1
-
-
 def get_root(spacy_doc):
     """
 
