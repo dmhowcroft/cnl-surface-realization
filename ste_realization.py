@@ -1,3 +1,4 @@
+import pickle
 import time
 
 from deptree import DependencyTree
@@ -29,8 +30,7 @@ def from_spacy_sentence(spacy_doc, find_root=True):
     dt = DependencyTree(str(root))
     dt.features['dependency_label'] = en_nlp.vocab[root.dep].orth_
     for child in root.children:
-        child_tree = DependencyTree("")
-        child_tree.from_spacy_sentence(child, find_root=False)
+        child_tree = from_spacy_sentence(child, find_root=False)
         dt.append(child_tree)
     return dt
 
@@ -92,15 +92,18 @@ def print_dependencies(spacy_doc, from_root=True):
 
 
 if __name__ == "__main__":
+    examples = []
     with open("ste100.sents", 'r') as example_file:
         line_count = 0
         for line in example_file:
             line_count += 1
             print("Processing example {}".format(line_count))
             print(line)
-            dt = DependencyTree("")
-            dt.from_spacy_sentence(en_nlp(line))
+            dt = from_spacy_sentence(en_nlp(line))
             print(dt)
             print(realize(dt))
             print("----------------")
             print()
+            examples.append((line, dt))
+    with open("ste100.pickle", 'w') as ste_pickle:
+        pickle.dump(examples, ste_pickle)
