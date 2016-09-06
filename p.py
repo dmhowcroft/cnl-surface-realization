@@ -31,4 +31,21 @@ lexicon_p =
 ('post-', 'prefix'),
 ('pre-', 'prefix'),
 ('precaution', 'n'),
+('precaution', 'n'),
+('precision', 'n'),
+('prepare', 'v'), # prepares, prepared, prepared
+('pressurization', 'n'),
+('pressurize', 'v'), # pressurizes, pressurized, pressurized
+('prevents', 'v'), # prevents, prevented, prevented
+('primary', 'adj'),
+('problem;, 'n'),
+('procedure', 'n'),
+('property', 'n'),
+('proportion', 'n'),
+('protection', 'n'),
+('protective', 'adj'),
+('pull', 'v'), # pulls, pulled, pulled
+('push', 'v'), # pushes, pushed, pushed
+('put', 'v'), # puts, put, put
+('put on', 'v') # puts on, put on, put on
 ]
