@@ -17,7 +17,7 @@ lexicon_p =
 ('person', 'n'),
 ('personnel', 'n'),
 ('piece', "n'),
-('play','n'),
+('play', 'n'),
 ('plus', 'pre'),
 ('pneumatic', 'adj'),
 ('pneumatically', 'adv'),
@@ -38,7 +38,7 @@ lexicon_p =
 ('pressurize', 'v'), # pressurizes, pressurized, pressurized
 ('prevents', 'v'), # prevents, prevented, prevented
 ('primary', 'adj'),
-('problem;, 'n'),
+('problem', 'n'),
 ('procedure', 'n'),
 ('property', 'n'),
 ('proportion', 'n'),
