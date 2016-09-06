@@ -110,26 +110,29 @@ class DependencyTree(Tree):
             return '%s%s%s %s%s' % (parens[0], str(self._label), nodesep,
                                     " ".join(child_strings), parens[1])
 
-    # New methods
-    def from_spacy_sentence(self, spacy_doc, find_root=True):
-        """
 
-        :param spacy_doc:
-        :type spacy_doc: spacy.tokens.doc.Doc
-        :param find_root:
-        :type find_root: bool
-        :return:
-        """
-        if find_root:
-            root = get_root(spacy_doc)
-        else:
-            root = spacy_doc
-        self.set_label(str(root))
-        self.features['dependency_label'] = en_nlp.vocab[root.dep].orth_
-        for child in root.children:
-            child_tree = DependencyTree("")
-            child_tree.from_spacy_sentence(child, find_root=False)
-            self.append(child_tree)
+def from_spacy_sentence(spacy_doc, find_root=True):
+    """
+    Produces a DependencyTree object from a spaCy doc.
+
+    :param spacy_doc:
+    :type spacy_doc: spacy.tokens.doc.Doc
+    :param find_root:
+    :type find_root: bool
+    :return: a DependencyTree extracted from the doc
+    :rtype: DependencyTree
+    """
+    if find_root:
+        root = get_root(spacy_doc)
+    else:
+        root = spacy_doc
+    dt = DependencyTree(str(root))
+    dt.features['dependency_label'] = en_nlp.vocab[root.dep].orth_
+    for child in root.children:
+        child_tree = DependencyTree("")
+        child_tree.from_spacy_sentence(child, find_root=False)
+        dt.append(child_tree)
+    return dt
 
 
 def realize(deptree):
