@@ -61,16 +61,8 @@ def print_dependencies(spacy_doc, from_root=True):
 def load_examples(example_filename):
     examples = []
     with open(example_filename, 'r') as example_file:
-        line_count = 0
         for line in example_file:
-            line_count += 1
-            print("Processing example {}".format(line_count))
-            print(line)
             dt = from_spacy_sentence(en_nlp(line))
-            print(dt)
-            print(realize(dt))
-            print("----------------")
-            print()
             examples.append((line, dt))
     with open(".".join(example_filename.split(".")[:-1]) + ".pickle", 'wb') as ste_pickle:
         pickle.dump(examples, ste_pickle)
