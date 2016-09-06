@@ -54,9 +54,11 @@ class DependencyTree(Tree):
         :type parens: basestring
         :param quotes: Indicates whether strings should be quoted.
         :type quotes: bool
+        :param with_features: Indicates whether or not to print features to output.
+        :type with_features: bool
 
         :return: A pretty-printed string representation of this tree.
-        :rtype: str
+        :rtype: basestring
         """
 
         # Try writing it on one line.
@@ -74,7 +76,7 @@ class DependencyTree(Tree):
         else:
             s = '%s%s%s' % (parens[0], str(self._label), nodesep)
         for child in self:
-            if isinstance(child, Tree):
+            if isinstance(child, DependencyTree):
                 s += '\n' + ' ' * (indent + 2) + child.pformat(margin, indent + 2, nodesep, parens, quotes, with_features)
             elif isinstance(child, tuple):
                 s += '\n' + ' ' * (indent + 2) + "/".join(child)
@@ -87,7 +89,7 @@ class DependencyTree(Tree):
     def _pformat_flat(self, nodesep, parens, quotes, with_features=True):
         child_strings = []
         for child in self:
-            if isinstance(child, Tree):
+            if isinstance(child, DependencyTree):
                 child_strings.append(child._pformat_flat(nodesep, parens, quotes, with_features))
             elif isinstance(child, tuple):
                 child_strings.append("/".join(child))
@@ -113,7 +115,9 @@ class DependencyTree(Tree):
         """
 
         :param spacy_doc:
-        :type spacy_doc:
+        :type spacy_doc: spacy.tokens.doc.Doc
+        :param find_root:
+        :type find_root: bool
         :return:
         """
         if find_root:
@@ -129,7 +133,6 @@ class DependencyTree(Tree):
 
 
 def realize(deptree):
-    dep = deptree.features.get("dependency_label", False)
     out_string = deptree.label()
     left_edge_buffer = []
     left_mid_buffer = []
@@ -152,7 +155,7 @@ def realize(deptree):
 
 def where_to_attach(deptree):
     dep = deptree.features.get("dependency_label")
-    if dep in ("det", "mark") or deptree.label() in ("when"):
+    if dep in ("det", "mark") or deptree.label() in ("when", ):
         return -3
     elif dep in ("nsubj", "nsubjpass", "amod", "nummod"):
         return -2
