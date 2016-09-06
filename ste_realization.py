@@ -1,7 +1,10 @@
 import pickle
 import time
-
 from deptree import DependencyTree
+
+from nltk.stem import *
+from nltk.stem.porter import *
+
 
 print("Loading spaCy for English...")
 start_time = time.time()
@@ -37,6 +40,8 @@ def from_spacy_sentence(spacy_doc, find_root=True):
 
 def realize(deptree):
     out_string = deptree.label()
+    stemmer = PorterStemmer()
+    out_string = stemmer.stem(out_string)	
     left_edge_buffer = []
     left_mid_buffer = []
     left_buffer = []
@@ -105,5 +110,5 @@ if __name__ == "__main__":
             print("----------------")
             print()
             examples.append((line, dt))
-    with open("ste100.pickle", 'w') as ste_pickle:
+    with open("ste100.pickle", 'wb') as ste_pickle:
         pickle.dump(examples, ste_pickle)
