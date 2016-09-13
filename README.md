@@ -3,6 +3,18 @@ Surface Realization for a Controlled Natural Language
 
 SIGGEN Hackathon at INLG 2016, Edinburgh, Scotland
 
+We met for approximately 7 hours during the pre-conference period of INLG.
+Based on the task description, we decided to use a simple input representation: universal dependencies.
+This reduced the surface realization task to focusing on linearization given an un-ordered dependency tree.
+Two one-person teams participated: Pablo Duboue submitted a PHP-based solution (https://github.com/DrDub/php-nlgen) and Nina Dethlefs built a solution using NLTK.
+Two multi-person teams eventually formed a single 5-person team: Dave Howcroft, Chrysanne di Marco, Simon Woo, Rodrigo Oliveira, and Pierre-Luc Vaudry worked on the code available in this repo.
+
+The LETTER.py files contain dictionary forms of some of the words allowed in STE and their parts of speech.
+After we got the basic linearization working, we worked on building a vocabulary of allowed terms so that we could provide more specific support for our target CNL.
+The next step would have been to work on morphological processing for the words in this dictionary.
+
+Below you will find the original description of the hackathon.
+
 Hackathon Description
 ---------------------
 
@@ -65,4 +77,3 @@ Metadata
 --------
 
 Hackathon organized by Yaji Sripada and Dave Howcroft.
-This repo prepared by Dave Howcroft.
